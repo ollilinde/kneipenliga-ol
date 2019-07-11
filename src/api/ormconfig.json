@@ -1,0 +1,10 @@
+{
+  "type": "mysql",
+  "host": "mysql",
+  "port": 3306,
+  "username": "root",
+  "password": "",
+  "database": "kneipenliga",
+  "entities": ["src/**/**.entity{.ts,.js}"],
+  "synchronize": true
+}

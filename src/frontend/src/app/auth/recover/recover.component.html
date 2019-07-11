@@ -1,0 +1,15 @@
+<div class="background"></div>
+
+<h1>Kneipenliga Oldenburg</h1>
+
+<section class="login">
+  <form [formGroup]="recoverForm" (submit)="triggerRecover()">
+    <fieldset>
+      <label for="email">E-Mail</label>
+      <input type="email" id="email" formControlName="email" autocomplete="email" />
+    </fieldset>
+    <input type="submit" value="Passwort zurücksetzen" />
+  </form>
+  <p>Dir ist dein Passwort wieder eingefallen? <a [routerLink]="['/auth/login']">Zum Login</a>.</p>
+</section>
+

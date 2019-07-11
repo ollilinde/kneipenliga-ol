@@ -1,0 +1,34 @@
+<div class="background"></div>
+
+<h1>KNEIPENLIGA OLDENBURG</h1>
+
+<section class="register">
+  <form [formGroup]="registerForm" (submit)="registerForm.valid && triggerRegister()">
+    <fieldset>
+      <label for="name">Vorname</label>
+      <input type="text" id="name" formControlName="name" autocomplete="given-name" />
+    </fieldset>
+    <fieldset>
+      <label for="surname">Nachname</label>
+      <input type="text" id="surname" formControlName="surname" autocomplete="family-name" />
+    </fieldset>
+    <fieldset>
+      <label for="email">E-Mail</label>
+      <input type="email" id="email" formControlName="email" autocomplete="email" />
+    </fieldset>
+    <fieldset>
+      <label for="password">Passwort</label>
+      <input type="password" id="password" formControlName="password" autocomplete="new-password" />
+    </fieldset>
+    <fieldset>
+      <label for="password-repeat">Passwort wiederholen</label>
+      <input type="password" id="password-repeat" formControlName="passwordRepeat" autocomplete="new-password" />
+    </fieldset>
+    <p class="error" *ngIf="$registerError | async">Wir konnten dich leider nicht anmelden. Bitte überprüfe deine
+      Daten und versuche es erneut.</p>
+    <input type="submit" value="Registrieren" [disabled]="registerForm.invalid || ($registerInProgress | async)"
+      [ngClass]="{'is-loading': ($registerInProgress | async)}" />
+  </form>
+  <p>Du bist schon registriert? Bitte <a [routerLink]="['/auth/login']">hier entlang</a>.</p>
+  <p>Du hast dein Passwort vergessen? Bitte <a [routerLink]="['/auth/recover']">hier entlang</a>.</p>
+</section>

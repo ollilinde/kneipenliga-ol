@@ -1,0 +1,82 @@
+@import '../../../scss/settings';
+
+.table {
+  thead {
+    tr td {
+      font-weight: 700;
+    }
+  }
+
+  tr {
+    td {
+      text-align: center;
+      padding: 0.25rem 0;
+
+      &:first-child {
+        text-align: left;
+      }
+    }
+  }
+}
+
+.matches {
+  li {
+    display: grid;
+    grid-template-columns: 1fr 1rem 1fr;
+    grid-row-gap: 1rem;
+    text-align: center;
+    margin: 3rem 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .date {
+      grid-row: 1;
+      grid-column: 1 / 4;
+      font-size: 0.8rem;
+    }
+
+    .number {
+      grid-row: 2;
+      grid-column: 3;
+      font-size: 3rem;
+
+      &:first-child {
+        grid-column: 1;
+      }
+    }
+
+    .separator {
+      font-size: 3rem;
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .team {
+      grid-column: 1;
+      grid-row: 3;
+
+      &:last-child {
+        grid-column: 3;
+      }
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-transform: uppercase;
+}
+
+ul {
+  padding-left: 20px;
+  li {
+    list-style-type: disc;
+  }
+}

@@ -1,0 +1,19 @@
+<div class="background"></div>
+
+<h1>Kneipenliga Oldenburg</h1>
+
+<section class="login">
+  <form [formGroup]="resetForm" (submit)="triggerReset()">
+    <fieldset>
+        <label for="password">Passwort</label>
+        <input type="password" id="password" formControlName="password" autocomplete="new-password" />
+    </fieldset>
+    <fieldset>
+      <label for="password-repeat">Passwort wiederholen</label>
+      <input type="password" id="password-repeat" formControlName="passwordRepeat" autocomplete="new-password" />
+    </fieldset>
+    <input type="hidden" name="token" formControlName="token" />
+    <input type="submit" value="Passwort speichern" />
+  </form>
+</section>
+

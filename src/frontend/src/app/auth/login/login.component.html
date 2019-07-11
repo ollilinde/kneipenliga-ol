@@ -1,0 +1,22 @@
+<div class="background"></div>
+
+<h1>KNEIPENLIGA OLDENBURG</h1>
+
+<section class="login">
+  <form [formGroup]="loginForm" (submit)="triggerLogin()">
+    <fieldset>
+      <label for="email">E-Mail</label>
+      <input type="email" id="email" formControlName="email" autocomplete="email" />
+    </fieldset>
+    <fieldset>
+      <label for="password">Passwort</label>
+      <input type="password" id="password" formControlName="password" autocomplete="current-password" />
+    </fieldset>
+    <p class="error" *ngIf="$loginError | async">Wir konnten dich leider nicht anmelden. Bitte überprüfe deine Daten und
+      versuche es erneut.</p>
+    <input type="submit" value="Login" [disabled]="$loginInProgress | async"
+      [ngClass]="{'is-loading': ($loginInProgress | async)}" />
+  </form>
+  <p>Du hast dein Passwort vergessen? Bitte <a [routerLink]="['/auth/recover']">hier entlang</a>.</p>
+  <p>Du bist noch nicht registriert? Bitte <a [routerLink]="['/auth/register']">hier entlang</a>.</p>
+</section>

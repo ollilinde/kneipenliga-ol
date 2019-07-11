@@ -1,0 +1,36 @@
+@import "./../../../scss/settings";
+
+:host {
+  // height: 100vh;
+  display: grid;
+  grid-template-columns: 2rem auto 2rem;
+  grid-template-rows: min-content 4rem auto;
+  color: $text-dark;
+
+  .background {
+    grid-column: 1 / 4;
+    grid-row: 1 / 3;
+    background-color: $brand-primary;
+  }
+  
+  h1 {
+    grid-row: 1;
+    grid-column: 1 / 4;
+    color: $text-light;
+    margin: 5rem 0;
+  }
+
+  section.register {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    background-color: #fff;
+    padding: 1rem;
+    box-shadow: 1px 1px 5px transparentize($text-dark, .6);
+
+    p {
+      font-size: .9rem;
+      margin: 1rem;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<section class="content">
+
+  <h2>TEAM ANMELDEN.</h2>
+  <p>Hier kannst du ein neues Team anmelden. Nachdem du einen Namen und einen Slogan angegeben hast, kannst du deine
+    Teamkollegen per E-Mail einladen. Per E-Mail erhältst du einen Payment-Code, den du bei der Überweisung der Gebühr
+    angeben musst. Sobald die Gebühr bezahlt ist wird dein Team für die Saison freigegeben.</p>
+  <form [formGroup]="createTeamForm" (submit)="triggerCreateTeam()">
+    <fieldset>
+      <label for="name">Name des Teams</label>
+      <input type="text" id="name" formControlName="name" />
+    </fieldset>
+    <fieldset>
+      <label for="slogan">Slogan</label>
+      <input type="text" id="slogan" formControlName="slogan" />
+    </fieldset>
+    <input formControlName="userId" type="hidden" name="userId" />
+    <p class="error" *ngIf="$createTeamError | async">Wir konnten das Team leider nicht anmelden. Bitte überprüfe deine
+      Eingaben und versuche es erneut.</p>
+    <input type="submit" value="Anmelden" [disabled]="$createTeamInProgress | async"
+      [ngClass]="{'is-loading': ($createTeamInProgress | async)}" />
+  </form>
+</section>

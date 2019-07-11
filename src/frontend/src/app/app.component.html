@@ -1,0 +1,57 @@
+<header *ngIf="!($hideHeader | async)">
+  <h1>KNEIPENLIGA OL</h1>
+</header>
+
+<router-outlet></router-outlet>
+
+<aside [ngClass]="{ 'is-active': navigationActive }">
+  <a class="menu-trigger" (click)="toggleNavigation()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </a>
+
+  <nav>
+    <ul>
+      <li><a [routerLink]="['/']" (click)="toggleNavigation()">Start</a></li>
+      <!-- <li>
+        <a [routerLink]="['/teams']" (click)="toggleNavigation()">Teams</a>
+      </li> -->
+      <li>
+        <a [routerLink]="['/kneipen']" (click)="toggleNavigation()">Kneipen</a>
+      </li>
+      <li>
+        <a [routerLink]="['/regelwerk']" (click)="toggleNavigation()">Regelwerk</a>
+      </li>
+      <!-- <li>
+        <a [routerLink]="['/ergebnis-eintragen']" (click)="toggleNavigation()">Ergebnis eintragen</a>
+      </li> -->
+      <li *ngIf="($user | async)">
+        <a [routerLink]="['/me']" (click)="toggleNavigation()">Team</a>
+      </li>
+      <!-->li *ngIf="($user | async)">
+        <a [routerLink]="['/admin/saisons']" (click)="toggleNavigation()">Saisons</a>
+      </!-->
+      <li *ngIf="!($user | async)">
+        <a [routerLink]="['/auth/login']" (click)="toggleNavigation()">Anmelden</a>
+      </li>
+      <li *ngIf="!($user | async)">
+        <a [routerLink]="['/auth/register']" (click)="toggleNavigation()">Registrieren</a>
+      </li>
+      <li *ngIf="($user | async)">
+        <a [routerLink]="['/']" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+<footer>
+  <p>
+    <a href="https://github.com/ollilinde/kneipenliga" target="_blank" rel="noopener">Entwickelt mit &hearts;</a>
+  </p>
+  <p>
+    <a href="https://github.com/ollilinde/kneipenliga/issues" target="_blank" rel="noopener">Feedback geben</a>
+    // <a [routerLink]="['/datenschutz']">Datenschutz</a> //
+    <a [routerLink]="['/impressum']">Impressum</a>
+  </p>
+</footer>

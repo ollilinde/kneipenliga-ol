@@ -1,0 +1,51 @@
+@import './settings';
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+
+  small {
+    font-size: 1rem;
+    color: $border-light;
+  }
+}
+
+h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.4;
+}
+
+a {
+  color: $brand-primary;
+}
+
+i {
+  font-style: italic;
+}
+
+b {
+  font-weight: 700;
+}
+
+.error {
+  color: $cl-error;
+}
+
+ul {
+  line-height: 1.4;
+}

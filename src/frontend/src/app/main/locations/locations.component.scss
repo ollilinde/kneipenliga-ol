@@ -1,0 +1,15 @@
+article {
+  display: grid;
+  grid-row-gap: 1rem;
+
+  img {
+    max-width: 12rem;
+    justify-self: center;
+  }
+
+  ul {
+    list-style: disc;
+    padding-left: 2rem;
+    line-height: 1.4;
+  }
+}

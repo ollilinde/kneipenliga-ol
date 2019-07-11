@@ -1,0 +1,58 @@
+@import "./settings";
+
+input[type="submit"],
+button,
+.btn {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 1rem;
+  padding: 1rem;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid $brand-primary;
+  background-color: $brand-primary;
+  color: $text-light;
+  position: relative;
+
+  &:disabled {
+    background-color: desaturate($brand-primary, 100%);
+    color: desaturate($text-light, 100%);
+  }
+
+  &.is-primary {
+    background-color: $brand-primary;
+    color: $text-light;
+  }
+
+  &.is-secondary {
+    background-color: #fff;
+    border-color: $brand-primary;
+    color: $brand-primary;
+  }
+
+  &.is-danger {
+    background-color: #b31f1f;
+    border-color: #b31f1f;
+    color: #fff;
+  }
+
+  &.is-narrow {
+    width: auto;
+    margin: auto;
+  }
+
+  &.is-loading:before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    border: 2px solid $text-light;
+    border-left-width: 0;
+    border-radius: 100%;
+    width: 8px;
+    height: 8px;
+  }
+}

@@ -1,0 +1,17 @@
+<section *ngIf="(user$ | async).team; else elseBlock" class="content">
+  <h2>MOIN, MOIN! {{ (user$ | async).name }}!</h2>
+  <p>Du gehörst zum Team "{{ (user$ | async).team.name }}"</p>
+  <h3>Du hast gespielt?</h3>
+  <p>Trage jetzt das Ergebnis ein:</p>
+  <article *ngFor="let team of (teams$ | async)">
+    <h2>{{ team.name }}</h2>
+    <a [routerLink]="['/ergebnis-eintragen', team.id]" class="btn btn-secondary">Ergebnis eintragen</a>
+  </article>
+</section>
+<ng-template #elseBlock>
+  <section class="content">
+    <h2>MOIN, MOIN! {{ (user$ | async).name }}!</h2>
+    <p>Du bist leider noch kein Teil eines Teams :(</p>
+    <a [routerLink]="['/me/team/create']" class="btn btn-primary">Gründe ein Team</a>
+  </section>
+</ng-template>

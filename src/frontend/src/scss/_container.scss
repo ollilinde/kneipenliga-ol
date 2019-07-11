@@ -1,0 +1,21 @@
+@import './settings';
+
+.content {
+  display: grid;
+  grid-row-gap: 2rem;
+  padding: 2rem 1rem;
+}
+
+hr.separator {
+  margin: 1rem auto;
+  width: 30%;
+  height: 1px;
+  background-color: $brand-primary;
+  border: none;
+}
+
+.fifty-fifty {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
