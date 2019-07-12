@@ -26,19 +26,8 @@ export class MatchesService {
   }
 
   async createMatch(match: Match) {
-    let m = this.matchesRepository.create(match);
-    const ma = await this.matchesRepository.save(m);
-    if (match.sets && match.sets.length > 0) {
-      for (let i = 0; i < match.sets.length; i++) {
-        const data = {
-          ...match.sets[i],
-          match: { id: ma.id },
-        };
-        let s = this.setsRepository.create(data);
-        this.setsRepository.save(s);
-      }
-    }
-    return ma;
+    const m = this.matchesRepository.create(match);
+    return this.matchesRepository.save(m);
   }
 
   async updateMatch(match: Match) {
