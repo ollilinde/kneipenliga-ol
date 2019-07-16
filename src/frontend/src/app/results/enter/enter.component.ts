@@ -41,7 +41,7 @@ export class EnterComponent implements OnInit {
 
   onEntryFormSave(result) {
     const match = {
-      season: { id: 2 },
+      season: { id: 1 },
       user: { id: this.userId },
       date: new Date().toISOString().slice(0, 10),
       teamHome: { id: +this.homeTeamId },
