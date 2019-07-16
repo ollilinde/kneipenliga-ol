@@ -7,13 +7,9 @@ import {
   Delete,
   Param,
   UseGuards,
-  InternalServerErrorException,
-  BadRequestException,
-  NotImplementedException,
 } from '@nestjs/common';
 import { MatchesService } from './matches.service';
 import { Match } from './match.entity';
-import { Set } from './set.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { IsAdminGuard } from '../guards/isAdmin.guard';
 
@@ -42,13 +38,6 @@ export class MatchesController {
   @UseGuards(AuthGuard(), IsAdminGuard)
   update(@Body() match: Match) {
     return this.service.updateMatch(match);
-  }
-
-  @Post('sets')
-  @UseGuards(AuthGuard())
-  postSet(@Body() set: Set) {
-    return new NotImplementedException('deprecated');
-    return this.service.addSet(set);
   }
 
   @Delete(':id')

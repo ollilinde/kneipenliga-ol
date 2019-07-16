@@ -7,7 +7,6 @@ import {
 } from 'typeorm';
 import { Team } from '../teams/team.entity';
 import { Season } from '../seasons/season.entity';
-import { Set } from './set.entity';
 import { User } from '../users/user.entity';
 
 @Entity()
@@ -35,7 +34,4 @@ export class Match {
 
   @ManyToOne(type => Team, team => team.matchesAsGuest)
   teamGuest: Team;
-
-  @OneToMany(type => Set, set => set.match)
-  sets: Set[];
 }
