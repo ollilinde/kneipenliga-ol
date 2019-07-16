@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { State, selectAuthUser, selectActiveSeason } from 'src/app/reducers';
-import { map } from 'rxjs/operators';
-import { ResultsService } from '../services/results.service';
+import {
+  State,
+  selectAuthUser,
+  selectActiveSeason,
+  selectSaveResultsInProgress,
+  selectSaveResultsError,
+} from 'src/app/reducers';
 import { SaveResultsAction } from '../actions/results.actions';
 
 @Component({
@@ -16,6 +20,8 @@ export class EnterComponent implements OnInit {
   homeTeamId: number;
   userId: number;
   seasonId: number;
+  isSaving$;
+  error$;
 
   constructor(private route: ActivatedRoute, private _store: Store<State>) {}
 
@@ -28,6 +34,9 @@ export class EnterComponent implements OnInit {
     this._store
       .select(selectActiveSeason)
       .subscribe(season => (this.seasonId = season));
+
+    this.isSaving$ = this._store.select(selectSaveResultsInProgress);
+    this.error$ = this._store.select(selectSaveResultsError);
   }
 
   onEntryFormSave(result) {

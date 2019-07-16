@@ -44,6 +44,10 @@ b {
 
 .error {
   color: $cl-error;
+
+  small {
+    font-size: smaller;
+  }
 }
 
 ul {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { State, selectAuthUser } from 'src/app/reducers';
@@ -9,6 +9,9 @@ import { State, selectAuthUser } from 'src/app/reducers';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
+  @Input('loading') loading$;
+  @Input('error') error$;
+
   user$;
 
   resultForm = new FormGroup({

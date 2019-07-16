@@ -15,5 +15,9 @@
       </div>
     </div>
   </div>
-  <input type="submit" value="Ergebnis speichern" />
+  <div *ngIf="error$ | async">
+    <p class="error">Es ist ein Fehler aufgetreten:<br /><small>{{ (error$ | async).message }}</small></p>
+  </div>
+  <button type="submit" [ngClass]="{'is-loading': loading$ | async, 'is-danger': error$ | async}">Ergebnis
+    speichern</button>
 </form>

@@ -38,7 +38,9 @@ export class ResultsEffects {
         map(result => {
           return new SaveResultsSucceededAction(result);
         }),
-        catchError(err => of(new SaveResultsFailedAction(err.message)))
+        catchError(err => {
+          return of(new SaveResultsFailedAction(err.error));
+        })
       )
     )
   );
