@@ -1,7 +1,6 @@
 <form [formGroup]="resultForm" (submit)="resultForm.valid && saveResult()">
   <div class=" match-wrapper">
     <div class="match">
-      <h4>Satz 1</h4>
       <div class="fifty-fifty">
         <fieldset>
           <label for="home-points">Eigene Tore</label>
@@ -14,56 +13,11 @@
             max="6" />
         </fieldset>
       </div>
-      <h4>Satz 2</h4>
-      <div class="fifty-fifty">
-        <fieldset>
-          <label for="home-points">Eigene Tore</label>
-          <input id="home-points" type="number" name="home-points" formControlName="homePoints2" required min="0"
-            max="6" />
-        </fieldset>
-        <fieldset>
-          <label for="guest-points">Tore Gegner</label>
-          <input id="guest-points" type="number" name="guest-points" formControlName="guestPoints2" required min="0"
-            max="6" />
-        </fieldset>
-      </div>
-      <h4>Satz 3</h4>
-      <div class="fifty-fifty">
-        <fieldset>
-          <label for="home-points">Eigene Tore</label>
-          <input id="home-points" type="number" name="home-points" formControlName="homePoints3" required min="0"
-            max="6" />
-        </fieldset>
-        <fieldset>
-          <label for="guest-points">Tore Gegner</label>
-          <input id="guest-points" type="number" name="guest-points" formControlName="guestPoints3" required min="0"
-            max="6" />
-        </fieldset>
-      </div>
-      <h4>Satz 4</h4>
-      <div class="fifty-fifty">
-        <fieldset>
-          <label for="home-points">Eigene Tore</label>
-          <input id="home-points" type="number" name="home-points" formControlName="homePoints4" min="0" max="6" />
-        </fieldset>
-        <fieldset>
-          <label for="guest-points">Tore Gegner</label>
-          <input id="guest-points" type="number" name="guest-points" formControlName="guestPoints4" required min="0"
-            max="6" />
-        </fieldset>
-      </div>
-      <h4>Satz 5</h4>
-      <div class="fifty-fifty">
-        <fieldset>
-          <label for="home-points">Eigene Tore</label>
-          <input id="home-points" type="number" name="home-points" formControlName="homePoints5" min="0" max="6" />
-        </fieldset>
-        <fieldset>
-          <label for="guest-points">Tore Gegner</label>
-          <input id="guest-points" type="number" name="guest-points" formControlName="guestPoints5" min="0" max="6" />
-        </fieldset>
-      </div>
     </div>
   </div>
-  <input type="submit" value="Ergebnis speichern" />
+  <div *ngIf="error$ | async">
+    <p class="error">Es ist ein Fehler aufgetreten:<br /><small>{{ (error$ | async).message }}</small></p>
+  </div>
+  <button type="submit" [ngClass]="{'is-loading': loading$ | async, 'is-danger': error$ | async}">Ergebnis
+    speichern</button>
 </form>

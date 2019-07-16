@@ -3,12 +3,11 @@ import { MatchesService } from './matches.service';
 import { MatchesController } from './matches.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Match } from './match.entity';
-import { Set } from './set.entity';
 import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Match, Set]),
+    TypeOrmModule.forFeature([Match]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
   providers: [MatchesService],

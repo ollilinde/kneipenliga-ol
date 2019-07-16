@@ -1,6 +1,15 @@
-@import "./settings";
+@import './settings';
 
-input[type="submit"],
+@keyframes loader {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+input[type='submit'],
 button,
 .btn {
   display: block;
@@ -42,17 +51,31 @@ button,
     margin: auto;
   }
 
+  &.is-loading {
+    color: transparent;
+  }
+
   &.is-loading:before {
-    content: "";
+    content: '';
     position: absolute;
-    left: 8px;
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
     display: block;
     border: 2px solid $text-light;
-    border-left-width: 0;
+    border-left-color: transparent;
     border-radius: 100%;
+    width: 16px;
+    height: 16px;
+    animation: 900ms loader infinite linear;
+  }
+
+  &.is-success:before {
     width: 8px;
-    height: 8px;
+    animation: none;
+    border-radius: 0;
+    border-left-width: 0;
+    border-top-width: 0;
+    transform: translate(-50%, -65%) rotate(35deg);
   }
 }
