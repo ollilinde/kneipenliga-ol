@@ -7,6 +7,7 @@ import {
   Delete,
   Param,
   UseGuards,
+  Request,
 } from '@nestjs/common';
 import { TeamsService } from './teams.service';
 import { Team } from './team.entity';
@@ -44,5 +45,11 @@ export class TeamsController {
   @UseGuards(AuthGuard(), IsAdminGuard)
   deleteTeam(@Param() params) {
     return this.service.deleteTeam(params.id);
+  }
+
+  @Post('addMember')
+  @UseGuards(AuthGuard())
+  async addEmailToTeam(@Request() req: any, @Body() data: { email: string }) {
+    const user = await this.service.addEmailToTeam(req.user.id, data.email);
   }
 }
