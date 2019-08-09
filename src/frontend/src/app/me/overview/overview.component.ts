@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State, selectAuthUser, selectMeTeams } from 'src/app/reducers';
-import { LoadTeamsAction } from '../actions/team.actions';
+import { LoadTeamsAction, AddEmailToTeamAction } from '../actions/team.actions';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-overview',
@@ -12,6 +13,10 @@ export class OverviewComponent implements OnInit {
   user$;
   teams$;
 
+  addMemberForm = new FormGroup({
+    email: new FormControl('', [Validators.email]),
+  });
+
   constructor(private _store: Store<State>) {}
 
   ngOnInit() {
@@ -19,5 +24,14 @@ export class OverviewComponent implements OnInit {
     this.teams$ = this._store.select(selectMeTeams);
 
     this._store.dispatch(new LoadTeamsAction());
+  }
+
+  onAddMember() {
+    const data = this.addMemberForm.value;
+    this._store.dispatch(
+      new AddEmailToTeamAction({
+        email: data.email,
+      })
+    );
   }
 }

@@ -12,6 +12,10 @@ import {
   CREATE_TEAM_SUCCEEDED_ACTION,
   LOAD_TEAMS_ACTION,
   LoadTeamsSuccessAction,
+  ADD_EMAIL_TO_TEAM_ACTION,
+  AddEmailToTeamSucceededAction,
+  AddEmailToTeamFailedAction,
+  ADD_EMAIL_TO_TEAM_ACTION_SUCCEEDED,
 } from '../actions/team.actions';
 import {
   ReloadUserAction,
@@ -65,7 +69,6 @@ export class MeEffects {
     ofType(RELOAD_USER_ACTION),
     map((action: ActionWithPayload) => action.payload),
     exhaustMap(data => {
-      console.log(data);
       return this._meService.getUser(data).pipe(
         map(result => new ReloadUserSucceededAction(result)),
         catchError(err => of(new ReloadUserFailedAction(err)))
@@ -85,5 +88,30 @@ export class MeEffects {
         catchError(err => of(new CreateTeamFailedAction(err.message)))
       )
     )
+  );
+
+  @Effect()
+  addEmailToTeam$ = this._actions$.pipe(
+    ofType(ADD_EMAIL_TO_TEAM_ACTION),
+    map((action: ActionWithPayload) => action.payload),
+    exhaustMap(data =>
+      this._meService.addEmailToTeam(data).pipe(
+        map(result => {
+          return new AddEmailToTeamSucceededAction(result);
+        }),
+        catchError(err => of(new AddEmailToTeamFailedAction(err.message)))
+      )
+    )
+  );
+
+  @Effect()
+  AddEmailToTeamSucceeded$ = this._actions$.pipe(
+    ofType(ADD_EMAIL_TO_TEAM_ACTION_SUCCEEDED),
+    map((action: ActionWithPayload) => {
+      return action.payload;
+    }),
+    map(data => {
+      return new ReloadUserAction({ id: data.user });
+    })
   );
 }

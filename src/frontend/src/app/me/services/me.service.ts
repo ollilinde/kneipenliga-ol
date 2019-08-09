@@ -37,4 +37,20 @@ export class MeService {
   getTeams() {
     return this._http.get(environment.api.url + '/teams');
   }
+
+  addEmailToTeam(payload: { email: string }) {
+    return this._store.select(selectAuthToken).pipe(
+      exhaustMap(authToken => {
+        return this._http.post(
+          environment.api.url + '/teams/addMember',
+          payload,
+          {
+            headers: new HttpHeaders({
+              Authorization: 'Bearer ' + authToken,
+            }),
+          }
+        );
+      })
+    );
+  }
 }
