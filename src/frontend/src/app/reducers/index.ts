@@ -117,3 +117,13 @@ export const selectSaveResultsError = createSelector(
   selectResults,
   (state: ResultsState) => state.saveResultsError
 );
+
+export const selectAddByEmailToTeamInProgress = createSelector(
+  selectMe,
+  (state: MeState) => state.addByEmailToTeamInProgress
+);
+
+export const selectAddByEmailToTeamError = createSelector(
+  selectMe,
+  (state: MeState) => state.addByEmailToTeamError
+);

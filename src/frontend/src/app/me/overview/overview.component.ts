@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { State, selectAuthUser, selectMeTeams } from 'src/app/reducers';
+import {
+  State,
+  selectAuthUser,
+  selectMeTeams,
+  selectAddByEmailToTeamInProgress,
+  selectAddByEmailToTeamError,
+} from 'src/app/reducers';
 import { LoadTeamsAction, AddEmailToTeamAction } from '../actions/team.actions';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -12,6 +18,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class OverviewComponent implements OnInit {
   user$;
   teams$;
+  addEmailToTeamInProgress$;
+  addEmailToTeamError$;
 
   addMemberForm = new FormGroup({
     email: new FormControl('', [Validators.email]),
@@ -22,6 +30,10 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
     this.user$ = this._store.select(selectAuthUser);
     this.teams$ = this._store.select(selectMeTeams);
+    this.addEmailToTeamInProgress$ = this._store.select(
+      selectAddByEmailToTeamInProgress
+    );
+    this.addEmailToTeamError$ = this._store.select(selectAddByEmailToTeamError);
 
     this._store.dispatch(new LoadTeamsAction());
   }

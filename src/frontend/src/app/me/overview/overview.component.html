@@ -11,7 +11,13 @@
       <label for="addEmail">E-Mail</label>
       <input id="addEmail" type="email" formControlName="email" required />
     </fieldset>
-    <input type="submit" class="btn" [disabled]="!addMemberForm.valid" value="Hinzufügen" />
+    <input type="submit" class="btn" [disabled]="!addMemberForm.valid || (addEmailToTeamInProgress$ | async)"
+      value="Hinzufügen" />
+    <p *ngIf="(addEmailToTeamError$ | async)?.statusCode === 400" class="error">Das Mitglied ist nicht registriert oder
+      spielt bereits in einem Team.</p>
+    <p *ngIf="(addEmailToTeamError$ | async) && (addEmailToTeamError$ | async).statusCode !== 400" class="error">Ein
+      unbekannter Fehler ist aufgetreten:
+      {{ (addEmailToTeamError$ | async).message }}</p>
   </form>
   <hr />
   <h3>Du hast gespielt?</h3>

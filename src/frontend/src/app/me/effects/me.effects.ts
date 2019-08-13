@@ -99,7 +99,7 @@ export class MeEffects {
         map(result => {
           return new AddEmailToTeamSucceededAction(result);
         }),
-        catchError(err => of(new AddEmailToTeamFailedAction(err.message)))
+        catchError(err => of(new AddEmailToTeamFailedAction(err.error)))
       )
     )
   );

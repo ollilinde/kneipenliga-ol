@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Team } from './team.entity';
@@ -52,8 +52,13 @@ export class TeamsService {
       where: [{ email: email }],
     });
 
-    userToAdd.team = actionUser.team;
-
-    return this.usersRepository.save(userToAdd);
+    if (!!userToAdd && !userToAdd.team) {
+      userToAdd.team = actionUser.team;
+      return this.usersRepository.save(userToAdd);
+    } else {
+      throw new BadRequestException(
+        "user isn't registered or already member of a team",
+      );
+    }
   }
 }
