@@ -29,7 +29,6 @@ export class TeamCreateComponent implements OnInit {
 
   ngOnInit() {
     this._store.select(selectAuthUser).subscribe(val => {
-      console.log('SET VALUE', val);
       this.createTeamForm.get('userId').setValue(val.id);
     });
     this.$createTeamInProgress = this._store.select(

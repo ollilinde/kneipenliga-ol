@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { MatchesService } from './matches.service';
 import { Match } from './match.entity';
-import { Set } from './set.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { IsAdminGuard } from '../guards/isAdmin.guard';
 
@@ -31,19 +30,14 @@ export class MatchesController {
   @Post()
   @UseGuards(AuthGuard())
   create(@Body() match: Match) {
-    return this.service.createMatch(match);
+    const m = this.service.createMatch(match);
+    return m;
   }
 
   @Put()
   @UseGuards(AuthGuard(), IsAdminGuard)
   update(@Body() match: Match) {
     return this.service.updateMatch(match);
-  }
-
-  @Post('sets')
-  @UseGuards(AuthGuard())
-  postSet(@Body() set: Set) {
-    return this.service.addSet(set);
   }
 
   @Delete(':id')

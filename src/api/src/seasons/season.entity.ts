@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import { Team } from '../teams/team.entity';
 
 @Entity()
 export class Season {
@@ -16,4 +17,7 @@ export class Season {
 
   @Column()
   maximumSets: number;
+
+  @ManyToMany(type => Team, team => team.seasons)
+  teams: Team[];
 }

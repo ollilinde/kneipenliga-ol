@@ -1,6 +1,25 @@
 <section *ngIf="(user$ | async).team; else elseBlock" class="content">
   <h2>MOIN, MOIN! {{ (user$ | async).name }}!</h2>
   <p>Du gehörst zum Team "{{ (user$ | async).team.name }}"</p>
+  <h3>Teammitglied hinzufügen</h3>
+  <p>Du hast als Teil des Teams die Möglichkeit neue Teammitglieder hinzuzufügen. Dafür brauchst du nicht mehr als die
+    E-Mail Adresse des neuen Mitglieds.</p>
+  <p><i>Bitte beachte, dass das neue Mitglied bereits registriert sein muss und nicht in einem anderen Team spielen
+      darf.</i></p>
+  <form (submit)="addMemberForm.valid && onAddMember()" [formGroup]="addMemberForm">
+    <fieldset>
+      <label for="addEmail">E-Mail</label>
+      <input id="addEmail" type="email" formControlName="email" required />
+    </fieldset>
+    <input type="submit" class="btn" [disabled]="!addMemberForm.valid || (addEmailToTeamInProgress$ | async)"
+      value="Hinzufügen" />
+    <p *ngIf="(addEmailToTeamError$ | async)?.statusCode === 400" class="error">Das Mitglied ist nicht registriert oder
+      spielt bereits in einem Team.</p>
+    <p *ngIf="(addEmailToTeamError$ | async) && (addEmailToTeamError$ | async).statusCode !== 400" class="error">Ein
+      unbekannter Fehler ist aufgetreten:
+      {{ (addEmailToTeamError$ | async).message }}</p>
+  </form>
+  <hr />
   <h3>Du hast gespielt?</h3>
   <p>Trage jetzt das Ergebnis ein:</p>
   <article *ngFor="let team of (teams$ | async)">

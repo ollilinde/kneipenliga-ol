@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { State, selectAuthUser } from 'src/app/reducers';
@@ -9,19 +9,14 @@ import { State, selectAuthUser } from 'src/app/reducers';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
+  @Input('loading') loading$;
+  @Input('error') error$;
+
   user$;
 
   resultForm = new FormGroup({
     homePoints1: new FormControl('0'),
     guestPoints1: new FormControl('0'),
-    homePoints2: new FormControl('0'),
-    guestPoints2: new FormControl('0'),
-    homePoints3: new FormControl('0'),
-    guestPoints3: new FormControl('0'),
-    homePoints4: new FormControl('0'),
-    guestPoints4: new FormControl('0'),
-    homePoints5: new FormControl('0'),
-    guestPoints5: new FormControl('0'),
   });
 
   @Output() save: EventEmitter<any> = new EventEmitter();
@@ -34,17 +29,13 @@ export class FormComponent implements OnInit {
 
   saveResult() {
     const res = this.resultForm.value;
-    let sets = [];
-    for (let i = 1; i <= 5; i++) {
-      const home = +res['homePoints' + i];
-      const guest = +res['guestPoints' + i];
+    const home = +res['homePoints1'];
+    const guest = +res['guestPoints1'];
 
-      if (home + guest > 0)
-        sets.push({
-          goalsHome: +res['homePoints' + i],
-          goalsGuest: +res['guestPoints' + i],
-        });
-    }
-    this.save.emit(sets);
+    if (home + guest > 0 && (home === 6 || guest === 6))
+      this.save.emit({
+        goalsHome: home,
+        goalsGuest: guest,
+      });
   }
 }
