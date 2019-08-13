@@ -42,3 +42,26 @@ export class LoadTeamsFailedAction implements ActionWithPayload {
 
   constructor(public payload: any) {}
 }
+
+export const ADD_EMAIL_TO_TEAM_ACTION = '[Teams] add email to team';
+export class AddEmailToTeamAction implements ActionWithPayload {
+  readonly type = ADD_EMAIL_TO_TEAM_ACTION;
+
+  constructor(public payload: { email: string }) {}
+}
+
+export const ADD_EMAIL_TO_TEAM_ACTION_SUCCEEDED =
+  '[Teams] add email to team succeeded';
+export class AddEmailToTeamSucceededAction implements ActionWithPayload {
+  readonly type = ADD_EMAIL_TO_TEAM_ACTION_SUCCEEDED;
+
+  constructor(public payload: any) {}
+}
+
+export const ADD_EMAIL_TO_TEAM_ACTION_FAILED =
+  '[Teams] add email to team failed';
+export class AddEmailToTeamFailedAction implements ActionWithPayload {
+  readonly type = ADD_EMAIL_TO_TEAM_ACTION_FAILED;
+
+  constructor(public payload: any) {}
+}
