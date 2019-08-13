@@ -4,7 +4,7 @@ import { TeamsController } from './teams.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Team } from './team.entity';
 import { PassportModule } from '@nestjs/passport';
-import { User } from 'src/users/user.entity';
+import { User } from '../users/user.entity';
 
 @Module({
   imports: [

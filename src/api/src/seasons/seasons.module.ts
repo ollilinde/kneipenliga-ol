@@ -4,10 +4,11 @@ import { SeasonsController } from './seasons.controller';
 import { Season } from './season.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PassportModule } from '@nestjs/passport';
+import { Team } from '../teams/team.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Season]),
+    TypeOrmModule.forFeature([Season, Team]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
   providers: [SeasonsService],

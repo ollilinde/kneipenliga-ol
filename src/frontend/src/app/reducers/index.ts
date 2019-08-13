@@ -127,3 +127,8 @@ export const selectAddByEmailToTeamError = createSelector(
   selectMe,
   (state: MeState) => state.addByEmailToTeamError
 );
+
+export const selectTable = createSelector(
+  selectApp,
+  (state: AppState) => state.table
+);
