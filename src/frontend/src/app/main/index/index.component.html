@@ -1,3 +1,22 @@
+<section *ngIf="(table$ | async)" class="content">
+  <h2>Rangliste</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Team</td>
+        <td>Punkte</td>
+        <td>Tore</td>
+      </tr>
+    </thead>
+    <tbody *ngFor="let team of (table$ | async)">
+      <tr>
+        <td>{{ team.team.name }}</td>
+        <td>{{ team.points }}</td>
+        <td>{{ team.goals }} : {{ team.opponentGoals }} ({{team.goalDiff}})</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
 <section class="content">
   <h2>Moin, Moin!</h2>
 

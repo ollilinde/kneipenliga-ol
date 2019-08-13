@@ -1,6 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 import { Match } from '../matches/match.entity';
 import { User } from '../users/user.entity';
+import { Season } from '../seasons/season.entity';
 
 @Entity()
 export class Team {
@@ -21,4 +29,8 @@ export class Team {
 
   @OneToMany(type => User, user => user.team)
   members: User[];
+
+  @ManyToMany(type => Season, season => season.teams)
+  @JoinTable()
+  seasons: Season[];
 }

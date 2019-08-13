@@ -7,6 +7,7 @@ import {
   Delete,
   Param,
   UseGuards,
+  BadRequestException,
 } from '@nestjs/common';
 import { SeasonsService } from './seasons.service';
 import { Season } from './season.entity';
@@ -20,6 +21,11 @@ export class SeasonsController {
   @Get()
   getAll() {
     return this.service.getSeasons();
+  }
+
+  @Get('table')
+  getTable() {
+    return this.service.getCurrentTable();
   }
 
   @Get(':id')

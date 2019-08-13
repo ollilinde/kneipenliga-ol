@@ -21,4 +21,8 @@ export class AppService {
       }),
     });
   }
+
+  getTable() {
+    return this._httpService.get(environment.api.url + '/seasons/table');
+  }
 }
