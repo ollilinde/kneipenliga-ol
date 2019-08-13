@@ -17,7 +17,7 @@ import { User } from './users/user.entity';
     TypeOrmModule.forRoot({
       keepConnectionAlive: true,
       type: 'mysql',
-      host: 'localhost',
+      host: 'mysql',
       port: 3306,
       username: 'root',
       password: 'test',
